@@ -1,0 +1,89 @@
+{
+  "name": "payuni-sdk-ts",
+  "version": "0.1.0",
+  "description": "PayUni 統一金流 SDK",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Eddy Tan <me@eddy.today>",
+  "homepage": "https://github.com/bear3z/payuni-sdk-ts#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bear3z/payuni-sdk-ts.git"
+  },
+  "bugs": "https://github.com/bear3z/payuni-sdk-ts/issues",
+  "keywords": [
+    "payuni",
+    "統一金流",
+    "payment",
+    "payment-gateway",
+    "sdk",
+    "typescript",
+    "neverthrow",
+    "functional",
+    "taiwan"
+  ],
+  "packageManager": "pnpm@11.6.0",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint src test",
+    "lint:fix": "oxlint --fix src test",
+    "format": "oxfmt src test",
+    "format:check": "oxfmt --check src test",
+    "prepublishOnly": "pnpm run build && publint",
+    "release": "bumpp && pnpm publish",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm i --frozen-lockfile --ignore-scripts --offline && pnpm run build && npx nano-staged"
+  },
+  "nano-staged": {
+    "*.{ts,tsx,js,jsx,mjs,cjs}": [
+      "oxlint --fix",
+      "oxfmt"
+    ]
+  },
+  "dependencies": {
+    "neverthrow": "^8.2.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "bumpp": "^11.1.0",
+    "nano-staged": "^1.0.2",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
+    "publint": "^0.3.21",
+    "simple-git-hooks": "^2.13.1",
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
+  }
+}
