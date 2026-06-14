@@ -1,6 +1,6 @@
 {
   "name": "payuni-sdk-ts",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "PayUni 統一金流 SDK",
   "type": "module",
   "license": "Apache-2.0",
