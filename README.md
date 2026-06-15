@@ -1,5 +1,9 @@
 # payuni-sdk-ts
 
+[![npm version](https://img.shields.io/npm/v/payuni-sdk-ts.svg)](https://www.npmjs.com/package/payuni-sdk-ts)
+[![npm downloads](https://img.shields.io/npm/dm/payuni-sdk-ts.svg)](https://www.npmjs.com/package/payuni-sdk-ts)
+[![license](https://img.shields.io/npm/l/payuni-sdk-ts.svg)](./LICENSE)
+
 PayUni 統一金流 SDK 的 TypeScript 函數式（FP）版本，改寫自官方 [.NET SDK](https://github.com/payuni/NET_SDK)。
 
 - 以 [neverthrow](https://github.com/supermacro/neverthrow) 的 `Result` / `ResultAsync` 表達成功與失敗，錯誤為判別聯合（discriminated union），不丟例外。
