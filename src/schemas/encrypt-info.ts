@@ -26,6 +26,13 @@ export const FIELD_MAP = {
   creditUnionPay: 'CreditUnionPay',
   creditRed: 'CreditRed',
   creditInst: 'CreditInst',
+  applePay: 'ApplePay',
+  googlePay: 'GooglePay',
+  samsungPay: 'SamsungPay',
+  linePay: 'LinePay',
+  aftee: 'Aftee',
+  jkoPay: 'JKoPay',
+  lang: 'Lang',
   bankType: 'BankType',
   paySet: 'PaySet',
   cardNo: 'CardNo',
@@ -155,6 +162,13 @@ export interface PayuniFields {
   creditUnionPay?: string
   creditRed?: string
   creditInst?: string
+  applePay?: string
+  googlePay?: string
+  samsungPay?: string
+  linePay?: string
+  aftee?: string
+  jkoPay?: string
+  lang?: string
   bankType?: string
   paySet?: string
   cardNo?: string
