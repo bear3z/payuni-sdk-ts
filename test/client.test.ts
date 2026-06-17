@@ -21,7 +21,10 @@ describe('createPayuniClient', () => {
     expect(html).toContain("action='https://sandbox-api.payuni.com.tw/api/upp'")
     expect(html).toContain("id='upp'")
     expect(html).toContain("name='EncryptInfo'")
-    expect(html).toContain('document.getElementById("upp").submit()')
+    // auto-submit via a trailing inline <script>, NOT <body onload> — onload never
+    // fires when the markup is injected via document.write during a page's load.
+    expect(html).toContain("<script>document.getElementById('upp').submit();</script>")
+    expect(html).not.toContain('onload')
   })
 
   it('atm 走 fetch，POST 到正確端點並回傳解析後結果', async () => {

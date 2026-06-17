@@ -19,15 +19,23 @@ const nowTimestamp = (): string => Math.floor(Date.now() / 1000).toString()
 const escapeAttr = (s: string): string =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 
+// Auto-submit via a trailing inline <script> rather than <body onload>. A body
+// onload only fires on a full document load; when a consumer injects this markup
+// with document.write() during an existing page's load (readyState === 'loading'),
+// the onload never fires and the form silently never submits. An inline script
+// placed after the form runs as soon as it is parsed/written, so it works both for
+// a standalone page load and for document.write injection.
 const htmlForm = (action: string, p: PayuniRequest): string =>
-  `<html><body onload='document.getElementById("upp").submit();'>` +
+  `<html><body>` +
   `<form action='${escapeAttr(action)}' method='post' id='upp'>` +
   `<input name='MerID' type='hidden' value='${escapeAttr(p.MerID)}' />` +
   `<input name='Version' type='hidden' value='${escapeAttr(p.Version)}' />` +
   `<input name='EncryptInfo' type='hidden' value='${escapeAttr(p.EncryptInfo)}' />` +
   `<input name='HashInfo' type='hidden' value='${escapeAttr(p.HashInfo)}' />` +
   `<input name='IsPlatForm' type='hidden' value='${escapeAttr(p.IsPlatForm)}' />` +
-  `</form></body></html>`
+  `</form>` +
+  `<script>document.getElementById('upp').submit();</script>` +
+  `</body></html>`
 
 export interface PayuniClient {
   upp: (input: ClientInput<'upp'>) => ResultAsync<string, PayuniError>
